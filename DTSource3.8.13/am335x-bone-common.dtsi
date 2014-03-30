@@ -47,6 +47,18 @@
 				0x17c 0x73	/* uart1_rtsn.i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
 			>;
 		};
+		dcan0_pins: pinmux_dcan0_pins {
+			pinctrl-single,pins = <
+				0x178 0x12  /* d_can0_tx, SLEWCTRL_FAST | INPUT_PULLUP | MODE2 */
+				0x17C 0x32  /* d_can0_rx, SLEWCTRL_FAST | RECV_ENABLE | INPUT_PULLUP | MODE2 */
+			>;
+		};
+		dcan1_pins: pinmux_dcan1_pins {
+			pinctrl-single,pins = <
+				0x180 0x12  /* d_can1_tx, SLEWCTRL_FAST | INPUT_PULLUP | MODE2 */
+				0x184 0x32  /* d_can1_rx, SLEWCTRL_FAST | RECV_ENABLE | INPUT_PULLUP | MODE2 */
+			>;
+		};
 	};
 
 	ocp: ocp {
@@ -401,7 +413,7 @@
 &i2c2 {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&i2c2_pins>;
+//	pinctrl-0 = <&i2c2_pins>;
 
 	clock-frequency = <100000>;
 
@@ -510,3 +522,22 @@
 	power = <250>;
 	status = "okay";
 };
+
+&dcan0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&dcan0_pins>;
+};
+
+&dcan1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&dcan1_pins>;
+};
+
